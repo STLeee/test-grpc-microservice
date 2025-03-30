@@ -1,9 +1,10 @@
-APP_NAME=service-b
+APP_NAME=service-api
 
 ENV=dev
 VERSION=1.0.0
 
 run:
+	swag init
 	go run main.go
 
 build:

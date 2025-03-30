@@ -1,13 +1,27 @@
-version: '3.9'
-
 services:
+  service-api:
+    image: service-api:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVICE_API_HOST=127.0.0.1
+      - SERVICE_API_PORT=8080
+      - SERVICE_A_URL=service-a:50051
+      - SERVICE_B_URL=service-b:50052
+    depends_on:
+      - service-a
+      - service-b
+
   service-a:
     image: service-a:dev
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "50051:50051" # Expose gRPC port
+      - "50051:50051"
     environment:
       - SERVICE_A_PORT=50051
       - SERVICE_B_URL=service-b:50052
@@ -20,6 +34,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "50052:50052" # Expose gRPC port
+      - "50052:50052"
     environment:
       - SERVICE_B_PORT=50052

@@ -1,7 +1,12 @@
+APP_NAME=service-a
+
 ENV=dev
-VERSION := 1.0.0
+VERSION=1.0.0
+
+run:
+	go run main.go
 
 build:
-	docker build -t service-a:latest -f Dockerfile ../
-	docker tag service-a:latest service-a:$(ENV)
-	docker tag service-a:latest service-a:$(VERSION)
+	docker build -t $(APP_NAME):latest -f Dockerfile ../
+	docker tag $(APP_NAME):latest $(APP_NAME):$(ENV)
+	docker tag $(APP_NAME):latest $(APP_NAME):$(VERSION)

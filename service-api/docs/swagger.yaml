@@ -1,0 +1,54 @@
+info:
+  contact: {}
+paths:
+  /service-a/data:
+    get:
+      description: Get data from Service A
+      parameters:
+      - description: Key
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get data
+      tags:
+      - service-a
+  /service-b/data:
+    get:
+      description: Get data from Service B
+      parameters:
+      - description: Key
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get data
+      tags:
+      - service-b
+swagger: "2.0"

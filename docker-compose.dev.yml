@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  service-a:
+    image: service-a:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "50051:50051" # Expose gRPC port
+    environment:
+      - SERVICE_A_PORT=50051
+      - SERVICE_B_URL=service-b:50052
+    depends_on:
+      - service-b
+
+  service-b:
+    image: service-b:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "50052:50052" # Expose gRPC port
+    environment:
+      - SERVICE_B_PORT=50052

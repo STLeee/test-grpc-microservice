@@ -14,16 +14,16 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o service-b service-b/main.go
+RUN go build -o out/service-b service-b/main.go
 
-# Use a minimal image for the final container
-FROM gcr.io/distroless/base-debian11
+# Use a image for the final container
+FROM debian:12.10-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the built binary from the builder stage
-COPY --from=builder /app/service-b .
+COPY --from=builder /app/out/service-b .
 
 # Expose the port the service listens on
 EXPOSE 50052

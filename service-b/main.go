@@ -21,7 +21,8 @@ func NewServerB() (*ServerB, error) {
 }
 
 func (s *ServerB) GetData(ctx context.Context, req *protobuf.DataRequest) (*protobuf.DataResponse, error) {
-	return &protobuf.DataResponse{Data: "Hello, " + req.Key + " from B"}, nil
+	data := "Hello, " + req.Key + " from B"
+	return &protobuf.DataResponse{Data: data}, nil
 }
 
 func main() {

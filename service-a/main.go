@@ -48,7 +48,8 @@ func (s *ServerA) GetData(ctx context.Context, req *protobuf.DataRequest) (*prot
 		return nil, fmt.Errorf("failed to call Service B: %v", err)
 	}
 
-	return &protobuf.DataResponse{Data: resB.Data}, nil
+	data := fmt.Sprintf("Hello, %s from A. Service B says: %s", req.Key, resB.Data)
+	return &protobuf.DataResponse{Data: data}, nil
 }
 
 func main() {

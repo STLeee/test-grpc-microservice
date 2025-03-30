@@ -1,0 +1,6 @@
+syntax = "proto3";
+package pd;
+option go_package = "common/pd";
+
+message DataRequest { string key = 1; }
+message DataResponse { string data = 1; }

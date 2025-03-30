@@ -1,0 +1,8 @@
+syntax = "proto3";
+package pd;
+option go_package = "common/pd";
+import "common.proto";
+
+service ServiceB {
+    rpc GetData(DataRequest) returns (DataResponse);
+}

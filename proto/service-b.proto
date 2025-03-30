@@ -1,6 +1,6 @@
 syntax = "proto3";
 package pd;
-option go_package = "common/pd";
+option go_package = "common/protobuf";
 import "common.proto";
 
 service ServiceB {

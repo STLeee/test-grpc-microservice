@@ -4,7 +4,7 @@
 // - protoc             v5.29.3
 // source: service-a.proto
 
-package pd
+package protobuf
 
 import (
 	context "context"

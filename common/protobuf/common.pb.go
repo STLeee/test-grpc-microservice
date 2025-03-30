@@ -4,7 +4,7 @@
 // 	protoc        v5.29.3
 // source: common.proto
 
-package pd
+package protobuf
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -117,7 +117,7 @@ const file_common_proto_rawDesc = "" +
 	"\vDataRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"\"\n" +
 	"\fDataResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04dataB\vZ\tcommon/pdb\x06proto3"
+	"\x04data\x18\x01 \x01(\tR\x04dataB\x11Z\x0fcommon/protobufb\x06proto3"
 
 var (
 	file_common_proto_rawDescOnce sync.Once

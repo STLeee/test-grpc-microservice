@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: service-a.proto
+// source: service-b.proto
 
-package pd
+package protobuf
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -20,21 +20,21 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-var File_service_a_proto protoreflect.FileDescriptor
+var File_service_b_proto protoreflect.FileDescriptor
 
-const file_service_a_proto_rawDesc = "" +
+const file_service_b_proto_rawDesc = "" +
 	"\n" +
-	"\x0fservice-a.proto\x12\x02pd\x1a\fcommon.proto28\n" +
-	"\bServiceA\x12,\n" +
-	"\aGetData\x12\x0f.pd.DataRequest\x1a\x10.pd.DataResponseB\vZ\tcommon/pdb\x06proto3"
+	"\x0fservice-b.proto\x12\x02pd\x1a\fcommon.proto28\n" +
+	"\bServiceB\x12,\n" +
+	"\aGetData\x12\x0f.pd.DataRequest\x1a\x10.pd.DataResponseB\x11Z\x0fcommon/protobufb\x06proto3"
 
-var file_service_a_proto_goTypes = []any{
+var file_service_b_proto_goTypes = []any{
 	(*DataRequest)(nil),  // 0: pd.DataRequest
 	(*DataResponse)(nil), // 1: pd.DataResponse
 }
-var file_service_a_proto_depIdxs = []int32{
-	0, // 0: pd.ServiceA.GetData:input_type -> pd.DataRequest
-	1, // 1: pd.ServiceA.GetData:output_type -> pd.DataResponse
+var file_service_b_proto_depIdxs = []int32{
+	0, // 0: pd.ServiceB.GetData:input_type -> pd.DataRequest
+	1, // 1: pd.ServiceB.GetData:output_type -> pd.DataResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -42,9 +42,9 @@ var file_service_a_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_service_a_proto_init() }
-func file_service_a_proto_init() {
-	if File_service_a_proto != nil {
+func init() { file_service_b_proto_init() }
+func file_service_b_proto_init() {
+	if File_service_b_proto != nil {
 		return
 	}
 	file_common_proto_init()
@@ -52,16 +52,16 @@ func file_service_a_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_a_proto_rawDesc), len(file_service_a_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_b_proto_rawDesc), len(file_service_b_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_service_a_proto_goTypes,
-		DependencyIndexes: file_service_a_proto_depIdxs,
+		GoTypes:           file_service_b_proto_goTypes,
+		DependencyIndexes: file_service_b_proto_depIdxs,
 	}.Build()
-	File_service_a_proto = out.File
-	file_service_a_proto_goTypes = nil
-	file_service_a_proto_depIdxs = nil
+	File_service_b_proto = out.File
+	file_service_b_proto_goTypes = nil
+	file_service_b_proto_depIdxs = nil
 }

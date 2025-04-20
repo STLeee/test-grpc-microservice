@@ -8,6 +8,11 @@ build:
 	$(MAKE) -C service-a build
 	$(MAKE) -C service-b build
 
+test:
+	$(MAKE) -C service-api test
+	$(MAKE) -C service-a test
+	$(MAKE) -C service-b test
+
 run:
 	docker-compose -f docker-compose.$(ENV).yml up -d
 

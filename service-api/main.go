@@ -49,7 +49,10 @@ func main() {
 	// Setup server
 	engine := gin.Default()
 	apiRouter := engine.Group("/api")
+
 	apiRouter.GET("/service-a/data", controller.GetDataFromServiceA)
+	apiRouter.GET("/service-a/sleep", controller.Sleep)
+
 	apiRouter.GET("/service-b/data", controller.GetDataFromServiceB)
 
 	// Swagger
@@ -143,6 +146,33 @@ func (c *Controller) GetDataFromServiceB(ctx *gin.Context) {
 	res, err := c.serviceBClient.GetData(ctx, req)
 	if err != nil {
 		ctx.JSON(500, gin.H{"error": "Failed to call Service B"})
+		return
+	}
+	ctx.JSON(200, res)
+}
+
+// @Summary Sleep
+// @Description Sleep for a specified duration
+// @Tags service-a
+// @Param duration query int true "Duration in seconds"
+// @Produce json
+// @Success 200 {object} map[string]any
+// @Failure 500 {object} map[string]any
+// @Router /service-a/sleep [get]
+func (c *Controller) Sleep(ctx *gin.Context) {
+	durationStr := ctx.Query("duration")
+	duration, err := strconv.Atoi(durationStr)
+	if err != nil {
+		ctx.JSON(400, gin.H{"error": "Invalid duration"})
+		return
+	}
+
+	req := &protobuf.SleepRequest{
+		Duration: int32(duration),
+	}
+	res, err := c.serviceAClient.Sleep(ctx, req)
+	if err != nil {
+		ctx.JSON(500, gin.H{"error": "Failed to call Service A"})
 		return
 	}
 	ctx.JSON(200, res)

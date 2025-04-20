@@ -7,6 +7,7 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -50,6 +51,20 @@ func (s *ServerA) GetData(ctx context.Context, req *protobuf.DataRequest) (*prot
 
 	data := fmt.Sprintf("Hello, %s from A. Service B says: %s", req.Key, resB.Data)
 	return &protobuf.DataResponse{Data: data}, nil
+}
+
+func (s *ServerA) Sleep(ctx context.Context, req *protobuf.SleepRequest) (*protobuf.SleepResponse, error) {
+	duration := time.Duration(req.GetDuration()) * time.Second
+	log.Printf("Sleep %d seconds requested", req.GetDuration())
+
+	select {
+	case <-ctx.Done():
+		log.Println("Context cancelled, stop sleeping")
+		return nil, ctx.Err()
+	case <-time.After(duration):
+		log.Println("Sleep duration completed")
+		return &protobuf.SleepResponse{Status: "Slept for the requested duration"}, nil
+	}
 }
 
 func main() {

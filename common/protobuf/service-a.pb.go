@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,23 +21,133 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SleepRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Duration      int32                  `protobuf:"varint,1,opt,name=duration,proto3" json:"duration,omitempty"` // 請求服務端等待的秒數
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SleepRequest) Reset() {
+	*x = SleepRequest{}
+	mi := &file_service_a_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SleepRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SleepRequest) ProtoMessage() {}
+
+func (x *SleepRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_a_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SleepRequest.ProtoReflect.Descriptor instead.
+func (*SleepRequest) Descriptor() ([]byte, []int) {
+	return file_service_a_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SleepRequest) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+type SleepResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"` // 執行結果狀態
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SleepResponse) Reset() {
+	*x = SleepResponse{}
+	mi := &file_service_a_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SleepResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SleepResponse) ProtoMessage() {}
+
+func (x *SleepResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_a_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SleepResponse.ProtoReflect.Descriptor instead.
+func (*SleepResponse) Descriptor() ([]byte, []int) {
+	return file_service_a_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SleepResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_service_a_proto protoreflect.FileDescriptor
 
 const file_service_a_proto_rawDesc = "" +
 	"\n" +
-	"\x0fservice-a.proto\x12\x02pd\x1a\fcommon.proto28\n" +
+	"\x0fservice-a.proto\x12\x02pd\x1a\fcommon.proto\"*\n" +
+	"\fSleepRequest\x12\x1a\n" +
+	"\bduration\x18\x01 \x01(\x05R\bduration\"'\n" +
+	"\rSleepResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status2h\n" +
 	"\bServiceA\x12,\n" +
-	"\aGetData\x12\x0f.pd.DataRequest\x1a\x10.pd.DataResponseB\x11Z\x0fcommon/protobufb\x06proto3"
+	"\aGetData\x12\x0f.pd.DataRequest\x1a\x10.pd.DataResponse\x12.\n" +
+	"\x05Sleep\x12\x10.pd.SleepRequest\x1a\x11.pd.SleepResponse\"\x00B\x11Z\x0fcommon/protobufb\x06proto3"
 
+var (
+	file_service_a_proto_rawDescOnce sync.Once
+	file_service_a_proto_rawDescData []byte
+)
+
+func file_service_a_proto_rawDescGZIP() []byte {
+	file_service_a_proto_rawDescOnce.Do(func() {
+		file_service_a_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_service_a_proto_rawDesc), len(file_service_a_proto_rawDesc)))
+	})
+	return file_service_a_proto_rawDescData
+}
+
+var file_service_a_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_service_a_proto_goTypes = []any{
-	(*DataRequest)(nil),  // 0: pd.DataRequest
-	(*DataResponse)(nil), // 1: pd.DataResponse
+	(*SleepRequest)(nil),  // 0: pd.SleepRequest
+	(*SleepResponse)(nil), // 1: pd.SleepResponse
+	(*DataRequest)(nil),   // 2: pd.DataRequest
+	(*DataResponse)(nil),  // 3: pd.DataResponse
 }
 var file_service_a_proto_depIdxs = []int32{
-	0, // 0: pd.ServiceA.GetData:input_type -> pd.DataRequest
-	1, // 1: pd.ServiceA.GetData:output_type -> pd.DataResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 0: pd.ServiceA.GetData:input_type -> pd.DataRequest
+	0, // 1: pd.ServiceA.Sleep:input_type -> pd.SleepRequest
+	3, // 2: pd.ServiceA.GetData:output_type -> pd.DataResponse
+	1, // 3: pd.ServiceA.Sleep:output_type -> pd.SleepResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -54,12 +165,13 @@ func file_service_a_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_a_proto_rawDesc), len(file_service_a_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_service_a_proto_goTypes,
 		DependencyIndexes: file_service_a_proto_depIdxs,
+		MessageInfos:      file_service_a_proto_msgTypes,
 	}.Build()
 	File_service_a_proto = out.File
 	file_service_a_proto_goTypes = nil

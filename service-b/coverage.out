@@ -1,0 +1,10 @@
+mode: set
+github.com/STLeee/test-grpc-microservice/service-b/main.go:19.37,21.2 1 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:23.107,26.2 2 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:28.13,31.19 3 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:31.19,33.3 1 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:36.2,37.16 2 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:37.16,39.3 1 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:42.2,43.16 2 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:43.16,45.3 1 0
+github.com/STLeee/test-grpc-microservice/service-b/main.go:46.2,53.23 6 0

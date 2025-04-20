@@ -1,0 +1,24 @@
+mode: set
+github.com/STLeee/test-grpc-microservice/service-a/main.go:25.45,26.32 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:26.32,28.17 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:28.17,30.4 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:31.3,32.13 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:36.58,38.27 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:38.27,39.32 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:39.32,41.4 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:43.2,43.15 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:46.107,48.16 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:48.16,50.3 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:52.2,53.48 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:56.107,60.9 3 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:61.20,63.24 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:64.30,66.82 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:70.13,73.19 3 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:73.19,75.3 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:78.2,79.23 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:79.23,81.3 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:82.2,83.16 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:83.16,85.3 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:88.2,89.16 2 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:89.16,91.3 1 0
+github.com/STLeee/test-grpc-microservice/service-a/main.go:92.2,99.23 6 0

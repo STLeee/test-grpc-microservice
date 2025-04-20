@@ -5,4 +5,13 @@ import "common.proto";
 
 service ServiceA {
     rpc GetData(DataRequest) returns (DataResponse);
+    rpc Sleep(SleepRequest) returns (SleepResponse) {}
+}
+
+message SleepRequest {
+    int32 duration = 1;  // 請求服務端等待的秒數
+}
+
+message SleepResponse {
+    string status = 1;   // 執行結果狀態
 }

@@ -52,6 +52,43 @@ const docTemplate = `{
                 }
             }
         },
+        "/service-a/sleep": {
+            "get": {
+                "description": "Sleep for a specified duration",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "service-a"
+                ],
+                "summary": "Sleep",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Duration in seconds",
+                        "name": "duration",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/service-b/data": {
             "get": {
                 "description": "Get data from Service B",

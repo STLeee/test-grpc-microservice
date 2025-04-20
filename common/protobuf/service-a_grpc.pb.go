@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ServiceA_GetData_FullMethodName = "/pd.ServiceA/GetData"
+	ServiceA_Sleep_FullMethodName   = "/pd.ServiceA/Sleep"
 )
 
 // ServiceAClient is the client API for ServiceA service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceAClient interface {
 	GetData(ctx context.Context, in *DataRequest, opts ...grpc.CallOption) (*DataResponse, error)
+	Sleep(ctx context.Context, in *SleepRequest, opts ...grpc.CallOption) (*SleepResponse, error)
 }
 
 type serviceAClient struct {
@@ -47,11 +49,22 @@ func (c *serviceAClient) GetData(ctx context.Context, in *DataRequest, opts ...g
 	return out, nil
 }
 
+func (c *serviceAClient) Sleep(ctx context.Context, in *SleepRequest, opts ...grpc.CallOption) (*SleepResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SleepResponse)
+	err := c.cc.Invoke(ctx, ServiceA_Sleep_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceAServer is the server API for ServiceA service.
 // All implementations must embed UnimplementedServiceAServer
 // for forward compatibility.
 type ServiceAServer interface {
 	GetData(context.Context, *DataRequest) (*DataResponse, error)
+	Sleep(context.Context, *SleepRequest) (*SleepResponse, error)
 	mustEmbedUnimplementedServiceAServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedServiceAServer struct{}
 
 func (UnimplementedServiceAServer) GetData(context.Context, *DataRequest) (*DataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetData not implemented")
+}
+func (UnimplementedServiceAServer) Sleep(context.Context, *SleepRequest) (*SleepResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sleep not implemented")
 }
 func (UnimplementedServiceAServer) mustEmbedUnimplementedServiceAServer() {}
 func (UnimplementedServiceAServer) testEmbeddedByValue()                  {}
@@ -104,6 +120,24 @@ func _ServiceA_GetData_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServiceA_Sleep_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SleepRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceAServer).Sleep(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServiceA_Sleep_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceAServer).Sleep(ctx, req.(*SleepRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServiceA_ServiceDesc is the grpc.ServiceDesc for ServiceA service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var ServiceA_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetData",
 			Handler:    _ServiceA_GetData_Handler,
+		},
+		{
+			MethodName: "Sleep",
+			Handler:    _ServiceA_Sleep_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
